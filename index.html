@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Futhure Tech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #ffa500;
+      --secondary: #00ff7f;
+      --text-light: #ffffff;
+      --text-dark: #000000;
+      --background-dark: #0f0f0f;
+      --background-light: #ffffff;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--background-dark);
+      color: var(--text-light);
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .light-mode {
+      background-color: var(--background-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-shadow: 2px 2px #000;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 2rem;
+    }
+
+    .search-container input {
+      padding: 0.8rem 1rem;
+      width: 50%;
+      border-radius: 25px;
+      border: 2px solid var(--secondary);
+      outline: none;
+      font-size: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .search-container input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .search-icon {
+      background-color: var(--secondary);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50%;
+      color: var(--text-dark);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .search-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .search-results {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .product {
+      background: rgba(255, 255, 255, 0.05);
+      margin: 1rem;
+      border-radius: 10px;
+      border: 1px solid #444;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product img {
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 0.5rem 0;
+      color: var(--primary);
+    }
+
+    .product p {
+      font-size: 0.9rem;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--secondary);
+      margin: 0.5rem 0;
+    }
+
+    .buy-btn {
+      background: var(--primary);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.1);
+      background: #ffb733;
+    }
+
+    .support-btn, .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 999;
+      transition: transform 0.2s ease;
+    }
+
+    .support-btn {
+      left: 20px;
+      background: var(--primary);
+      color: white;
+    }
+
+    .whatsapp-btn {
+      right: 20px;
+      background: #25d366;
+      color: white;
+    }
+
+    .support-btn:active, .whatsapp-btn:active {
+      transform: scale(1.2);
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .search-container input {
+        width: 80%;
+      }
+
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FUTHURE TECH</h1>
+    <nav>
+      <a href="#">Laptops</a>
+      <a href="#">Components</a>
+      <a href="#">Accessories</a>
+      <a href="#">Support</a>
+      <button class="toggle-btn" onclick="toggleTheme()" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search latest tech, gear or support...">
+    <button class="search-icon" onclick="searchItems()">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+  <div class="search-results" id="search-results"></div>
+
+  <section class="products" id="products-container"></section>
+
+  <footer>
+    &copy; 2025 Futhure Tech. Innovation Starts Here.
+  </footer>
+
+  <div class="support-btn" onclick="alert('Support will contact you shortly!')">
+    <i class="fas fa-headset"></i>
+  </div>
+
+  <div class="whatsapp-btn" onclick="window.open('https://wa.me/94719224803?text=Hello%20Futhure%20Tech!%20I%20need%20assistance.', '_blank')">
+    <i class="fab fa-whatsapp"></i>
+  </div>
+
+  <script>
+    const items = [
+      { name: 'Gaming Laptop X1', note: 'High-performance gaming laptop with RTX GPU', price: 'LKR 350,000', img: '1ph.jpeg' },
+      { name: '4K Monitor Ultra', note: 'Ultra HD IPS display for creators', price: 'LKR 120,000', img: '2ph.jpeg' },
+      { name: 'Mechanical Keyboard RGB', note: 'Custom switches and full RGB', price: 'LKR 25,000', img: '3ph.jpeg' },
+      { name: 'Noise-Canceling Headset', note: 'Immersive audio with mic', price: 'LKR 18,000', img: '4ph.jpeg' },
+      { name: 'Gaming Mouse Pro', note: 'High DPI, ergonomic grip', price: 'LKR 12,000', img: '5ph.jpeg' },
+      { name: 'VR Headset Max', note: 'Next-gen virtual reality headset', price: 'LKR 90,000', img: '6ph.jpeg' },
+      { name: 'Graphic Tablet Pro', note: 'For digital artists & creators', price: 'LKR 40,000', img: '7ph.jpeg' },
+      { name: 'Portable SSD 1TB', note: 'Fast, sleek storage on the go', price: 'LKR 28,000', img: '8ph.jpeg' },
+      { name: 'Wireless Charger Pad', note: 'Quick charge any device', price: 'LKR 5,000', img: '9ph.jpeg' },
+      { name: 'Smartwatch Z', note: 'Fitness tracking + mobile sync', price: 'LKR 32,000', img: '10ph.jpeg' },
+      { name: 'Custom PC Build', note: 'Tailored gaming PC setup', price: 'LKR 400,000', img: '11ph.jpeg' },
+      { name: 'RGB Case Fan Pack', note: 'Cooling & aesthetics', price: 'LKR 6,000', img: '12ph.jpeg' },
+      { name: 'Power Bank 20000mAh', note: 'All-day power backup', price: 'LKR 7,500', img: '13ph.jpeg' },
+      { name: 'Bluetooth Speaker Boom', note: 'Deep bass portable sound', price: 'LKR 15,000', img: '14ph.jpeg' },
+      { name: 'Thermal Paste Pack', note: 'Optimized CPU cooling', price: 'LKR 1,500', img: '15ph.jpeg' },
+      { name: 'CPU Cooler Xtreme', note: 'Silent performance', price: 'LKR 22,000', img: '16ph.jpeg' },
+      { name: 'Webcam Full HD', note: 'Stream-ready camera', price: 'LKR 10,000', img: '17ph.jpeg' },
+      { name: 'Smart Light Strip', note: 'Voice controlled RGB light', price: 'LKR 4,500', img: '18ph.jpeg' },
+      { name: 'Ergonomic Chair', note: 'Built for long sessions', price: 'LKR 48,000', img: '19ph.jpeg' },
+      { name: 'WiFi 6 Router', note: 'Fast and secure network', price: 'LKR 19,500', img: '20ph.jpeg' }
+    ];
+
+    const container = document.getElementById('products-container');
+    const resultsDiv = document.getElementById('search-results');
+    const input = document.getElementById('search-input');
+
+    function renderItems() {
+      container.innerHTML = items.map(item => `
+        <div class="product">
+          <img src="${item.img}" alt="${item.name}" width="250" height="168" />
+          <h3>${item.name}</h3>
+          <p>${item.note}</p>
+          <div class="price">${item.price}</div>
+          <button class="buy-btn" onclick="window.open('https://wa.me/94719224803?text=I%20want%20to%20buy%20${encodeURIComponent(item.name)}', '_blank')">Buy Now</button>
+        </div>
+      `).join('');
+    }
+
+    function searchItems() {
+      const keyword = input.value.trim().toLowerCase();
+      if (!keyword) {
+        resultsDiv.innerHTML = '';
+        renderItems();
+        return;
+      }
+
+      const matches = items.filter(item => item.name.toLowerCase().includes(keyword));
+      resultsDiv.innerHTML = matches.length
+        ? `Search Results:<br>${matches.map(m => `• ${m.name}`).join('<br>')}`
+        : 'No matching items found.';
+      container.innerHTML = '';
+    }
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') searchItems();
+    });
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    renderItems();
+  </script>
+</body>
+</html>
+
